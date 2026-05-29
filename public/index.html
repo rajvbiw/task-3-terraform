@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyberpunk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEON STRIKE - Tic-Tac-Toe Ultimate</title>
+  <meta name="description" content="A premium, state-of-the-art Tic-Tac-Toe game featuring procedural sound synthesis, smart minimax AI, dynamic custom themes, and glassmorphic stats tracking.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="game-wrapper">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="neon-badge">ULTIMATE</span>
+        <h1 class="logo-title">NEON STRIKE</h1>
+        <p class="logo-subtitle">Tic-Tac-Toe Experience</p>
+      </div>
+      
+      <div class="top-controls">
+        <!-- Audio Control -->
+        <button id="mute-toggle-btn" class="control-btn icon-btn" title="Toggle Sound FX">
+          <svg viewBox="0 0 24 24" class="control-icon" id="sound-icon">
+            <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="game-main-content">
+      <!-- PANEL A: CONFIG & SCOREBOARD -->
+      <section class="dashboard-panel">
+        
+        <!-- Theme Selector -->
+        <div class="glass-card panel-card">
+          <h3 class="card-title">Select Atmosphere</h3>
+          <div class="theme-grid">
+            <button class="theme-btn active" data-theme-id="cyberpunk" style="--btn-color: #00f0ff;">
+              <span class="theme-preview" style="background: linear-gradient(135deg, #00f0ff, #ff007f);"></span>
+              Cyberpunk
+            </button>
+            <button class="theme-btn" data-theme-id="emerald" style="--btn-color: #10b981;">
+              <span class="theme-preview" style="background: linear-gradient(135deg, #10b981, #fbbf24);"></span>
+              Emerald
+            </button>
+            <button class="theme-btn" data-theme-id="cosmic" style="--btn-color: #8b5cf6;">
+              <span class="theme-preview" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6);"></span>
+              Cosmic
+            </button>
+            <button class="theme-btn" data-theme-id="sunset" style="--btn-color: #f97316;">
+              <span class="theme-preview" style="background: linear-gradient(135deg, #f97316, #ef4444);"></span>
+              Sunset
+            </button>
+          </div>
+        </div>
+
+        <!-- Configurations -->
+        <div class="glass-card panel-card">
+          <h3 class="card-title">Match Setup</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Game Mode</label>
+            <div class="segmented-control">
+              <input type="radio" id="mode-ai" name="game-mode" value="ai" checked>
+              <label for="mode-ai">System AI</label>
+              
+              <input type="radio" id="mode-pvp" name="game-mode" value="pvp">
+              <label for="mode-pvp">Local PVP</label>
+            </div>
+          </div>
+
+          <div class="form-group" id="difficulty-group">
+            <label class="form-label">AI Difficulty</label>
+            <div class="segmented-control difficulty">
+              <input type="radio" id="diff-easy" name="ai-difficulty" value="easy">
+              <label for="diff-easy">Easy</label>
+              
+              <input type="radio" id="diff-medium" name="ai-difficulty" value="medium" checked>
+              <label for="diff-medium">Medium</label>
+              
+              <input type="radio" id="diff-hard" name="ai-difficulty" value="hard">
+              <label for="diff-hard">Perfect</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Player Names</label>
+            <div class="inputs-row">
+              <div class="input-container">
+                <span class="p-symbol x-color">X</span>
+                <input type="text" id="p1-name-input" class="p-name-input" value="Player 1" autocomplete="off" placeholder="Enter P1 Name">
+              </div>
+              <div class="input-container">
+                <span class="p-symbol o-color">O</span>
+                <input type="text" id="p2-name-input" class="p-name-input" value="System AI" autocomplete="off" placeholder="Enter P2 Name">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scoreboard / Stats -->
+        <div class="glass-card panel-card highlight-card">
+          <h3 class="card-title">Performance Diagnostics</h3>
+          
+          <div class="scoreboard-grid">
+            <div class="score-pill score-x">
+              <span class="p-label" id="p1-score-label">Player 1 (X)</span>
+              <span class="p-val" id="score-p1">0</span>
+            </div>
+            <div class="score-pill score-o">
+              <span class="p-label" id="p2-score-label">System AI (O)</span>
+              <span class="p-val" id="score-p2">0</span>
+            </div>
+            <div class="score-pill score-draw">
+              <span class="p-label">Stalemates</span>
+              <span class="p-val" id="score-draws">0</span>
+            </div>
+          </div>
+
+          <div class="analytics-row">
+            <div class="analytic-item">
+              <span class="analytic-lbl">Win Ratio</span>
+              <span class="analytic-val" id="stat-winrate">0%</span>
+            </div>
+            <div class="analytic-item">
+              <span class="analytic-lbl">Max Streak</span>
+              <span class="analytic-val" id="stat-streak">0</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PANEL B: PLAYING FIELD -->
+      <section class="game-field-panel">
+        
+        <!-- Status Indicator -->
+        <div class="glass-card status-indicator-card">
+          <div class="indicator-pulse">
+            <span class="pulse-dot active" id="turn-dot"></span>
+          </div>
+          <span class="status-msg-text" id="game-status-display">Initializing match engine...</span>
+        </div>
+
+        <!-- The Ultimate Board Grid -->
+        <div class="board-outer-container">
+          <div class="board-grid" id="ttt-board">
+            
+            <!-- Dynamic strike svg overlay -->
+            <svg class="winning-strike-svg" id="strike-svg" viewBox="0 0 300 300">
+              <line id="strike-line" x1="0" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
+            </svg>
+
+            <!-- 9 Cells -->
+            <button class="cell-btn" data-index="0" aria-label="Cell 1"></button>
+            <button class="cell-btn" data-index="1" aria-label="Cell 2"></button>
+            <button class="cell-btn" data-index="2" aria-label="Cell 3"></button>
+            <button class="cell-btn" data-index="3" aria-label="Cell 4"></button>
+            <button class="cell-btn" data-index="4" aria-label="Cell 5"></button>
+            <button class="cell-btn" data-index="5" aria-label="Cell 6"></button>
+            <button class="cell-btn" data-index="6" aria-label="Cell 7"></button>
+            <button class="cell-btn" data-index="7" aria-label="Cell 8"></button>
+            <button class="cell-btn" data-index="8" aria-label="Cell 9"></button>
+          </div>
+        </div>
+
+        <!-- Auxiliary Action controls -->
+        <div class="board-actions">
+          <button id="reset-game-btn" class="action-btn btn-primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Restart Match
+          </button>
+          <button id="clear-stats-btn" class="action-btn btn-secondary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reset Metrics
+          </button>
+        </div>
+
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Neon Strike &copy; 2026. Made with ❤️ for DevOps downtime amusement.</p>
+    </footer>
+  </div>
+
+  <!-- JavaScript Game Engine -->
+  <script src="js/tictactoe.js"></script>
+</body>
+</html>

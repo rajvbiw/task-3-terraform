@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log*
+logs/
+tests/
+tasks.json
+Dockerfile
+docker-compose.yml
+prometheus.yml
+.git/
+.github/
+.gitignore
+.DS_Store

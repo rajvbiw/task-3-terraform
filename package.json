@@ -1,0 +1,26 @@
+{
+  "name": "devops-node-suite",
+  "version": "1.0.0",
+  "description": "Premium Node.js Application Suite featuring Task Board, Tic-Tac-Toe, and live DevOps resource monitor with Prometheus metrics.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test tests/server.test.js"
+  },
+  "keywords": [
+    "devops",
+    "nodejs",
+    "express",
+    "prometheus",
+    "docker",
+    "monitoring"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "morgan": "^1.10.0"
+  }
+}

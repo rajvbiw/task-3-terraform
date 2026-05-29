@@ -1,0 +1,14 @@
+# Dependency directory
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Static file JSON storage (task database)
+tasks.json
+
+# OS files
+.DS_Store
+Thumbs.db
