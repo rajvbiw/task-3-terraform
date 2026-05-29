@@ -25,5 +25,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_USER_NAME }}/tictactoe-app .
 
+
+        
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USER_NAME }}/tictactoe-app
