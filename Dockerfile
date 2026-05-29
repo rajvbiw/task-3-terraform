@@ -9,7 +9,6 @@ RUN npm ci
 
 # STAGE 2: PRODUCTION RUNTIME ENVIRONMENT
 
-
 FROM node:26-alpine AS runner
 
 WORKDIR /usr/src/app
@@ -34,3 +33,5 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
   CMD node -e "fetch('http://localhost:3000/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"
 
 CMD ["npm", "start"]
+
+
