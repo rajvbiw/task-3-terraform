@@ -104,9 +104,9 @@ http://localhost:3000
 
 ---
 
-##  Screenshots for Terraform Commands
+## 📷 Screenshots for Terraform Commands
 
-Screenshot files are available in `screenshot/` for the following steps:
+Screenshot files are available in `screenshot/` for the following steps. Below are image previews for each step:
 
 * `terraform init`
 * `terraform plan`
@@ -116,6 +116,24 @@ Screenshot files are available in `screenshot/` for the following steps:
 * `Docker image`
 * `terraform state list`
 * `terraform destroy`
+
+### Screenshot Preview
+
+![Terraform init](screenshot/terraform%20init.png)
+
+![Terraform plan](screenshot/terraform%20plan.png)
+
+![Terraform Apply](screenshot/Terraform%20Apply.png)
+
+![Docker ps](screenshot/docker%20ps.png)
+
+![Docker run](screenshot/Docker%20run.png)
+
+![Docker image](screenshot/Docker%20image.png)
+
+![Terraform state list](screenshot/terraform%20state%20list.png)
+
+![Terraform destroy](screenshot/Terraform%20Destory.png)
 
 ---
 
