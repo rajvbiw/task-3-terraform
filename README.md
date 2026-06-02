@@ -120,20 +120,28 @@ Screenshot files are available in `screenshot/` for the following steps. Below a
 ### Screenshot Preview
 
 ![Terraform init](screenshot/terraform%20init.png)
+**Caption:** Terraform initialization output (`terraform init`)
 
 ![Terraform plan](screenshot/terraform%20plan.png)
+**Caption:** Infrastructure plan preview (`terraform plan`)
 
 ![Terraform Apply](screenshot/Terraform%20Apply.png)
+**Caption:** Terraform apply execution result (`terraform apply`)
 
 ![Docker ps](screenshot/docker%20ps.png)
+**Caption:** Running Docker containers shown by `docker ps`
 
 ![Docker run](screenshot/Docker%20run.png)
+**Caption:** Docker container startup command output (`docker run`)
 
 ![Docker image](screenshot/Docker%20image.png)
+**Caption:** Local Docker image list (`docker image ls`)
 
 ![Terraform state list](screenshot/terraform%20state%20list.png)
+**Caption:** Terraform-managed resources list (`terraform state list`)
 
 ![Terraform destroy](screenshot/Terraform%20Destory.png)
+**Caption:** Terraform destruction step and cleanup (`terraform destroy`)
 
 ---
 
