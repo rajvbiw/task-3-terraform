@@ -1,4 +1,4 @@
-# TicTacToe CI/CD + Terraform DevOps Project
+# TicTacToe Docker + Terraform DevOps Project
 
 ## 📌 Project Overview
 
