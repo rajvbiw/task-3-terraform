@@ -1,69 +1,102 @@
-# TicTacToe CI/CD DevOps Project
+# TicTacToe CI/CD + Terraform DevOps Project
 
 ## 📌 Project Overview
 
-This project demonstrates a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline using GitHub Actions, Docker, and DockerHub for a TicTacToe web application.
+This project is a TicTacToe web application that demonstrates:
 
-The application source code is containerized using Docker and automatically built and pushed to DockerHub whenever changes are pushed to the `main` branch.
+* Docker containerization for the application
+* Terraform automation for Docker image and container management
+
+The project includes a Terraform configuration in `terraform-docker/` and screenshots of Terraform command results in `screenshot/`.
 
 ---
 
-# 🚀 Technologies Used
+## 🚀 Technologies Used
 
 * Docker
-* GitHub Actions
+* Terraform
 * DockerHub
-* GitHub
+* Node.js
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```bash
 tictactoe/
-│
-├── .github/
-│   └── workflows/
-│       └── main.yml
 │
 ├── public/
 ├── server.js
 ├── Dockerfile
 ├── package.json
 ├── README.md
-└── tasks.json
+├── terraform-docker/
+│   └── main.tf
+└── screenshot/
+    ├── terraform init.png
+    ├── terraform plan.png
+    ├── Terraform Apply.png
+    ├── terraform state list.png
+    ├── Terraform Destory.png
+    ├── docker ps.png
+    ├── Docker run.png
+    └── Docker image.png
 ```
 
 ---
 
-# ⚙️ CI/CD Workflow
+## 🔧 Terraform Setup
 
-The CI/CD pipeline is implemented using GitHub Actions.
+The Terraform configuration is located in `terraform-docker/main.tf` and uses the Docker provider to create a Docker image and container.
 
-## Workflow Steps
+### Terraform Commands
 
-1. Developer pushes code to GitHub
-2. GitHub Actions workflow automatically triggers
-3. Docker image is built
-4. Docker image is pushed to DockerHub
+```bash
+cd terraform-docker
+terraform init
+terraform plan
+terraform apply
+terraform state list
+terraform destroy
+```
+
+### What these commands do
+
+* `terraform init` - initializes Terraform and downloads required providers
+* `terraform plan` - creates an execution plan for Docker resource changes
+* `terraform apply` - deploys the Docker image and container defined in Terraform
+* `terraform state list` - shows Terraform-managed resources
+* `terraform destroy` - removes the created Docker resources
 
 ---
 
-# 🐳 Docker Setup
+## 🐳 Docker Setup
 
-## Build Docker Image
+### Build Docker Image manually
 
 ```bash
 docker build -t tictactoe-app .
 ```
 
-## Run Docker Container
+### Run Docker Container manually
 
 ```bash
 docker run -p 3000:3000 tictactoe-app
 ```
 
-## Open Application
+### View running containers
+
+```bash
+docker ps
+```
+
+### List Docker images
+
+```bash
+docker image ls
+```
+
+### Open Application
 
 ```bash
 http://localhost:3000
@@ -71,92 +104,46 @@ http://localhost:3000
 
 ---
 
-# 🔄 GitHub Actions Workflow
+##  Screenshots for Terraform Commands
 
-The workflow file is located at:
+Screenshot files are available in `screenshot/` for the following steps:
 
-```bash
-.github/workflows/main.yml
-```
-
-The workflow performs:
-
-* Source code checkout
-* DockerHub login
-* Docker image build
-* Docker image push
+* `terraform init`
+* `terraform plan`
+* `terraform apply`
+* `docker ps`
+* `Docker run`
+* `Docker image`
+* `terraform state list`
+* `terraform destroy`
 
 ---
 
-# 🔐 GitHub Secrets Used
+## 📖 Useful Documentation
 
-The following GitHub Secrets were configured:
-
-| Secret Name     | Purpose                |
-| --------------- | ---------------------- |
-| DOCKER_USERNAME | DockerHub Username     |
-| DOCKER_PASSWORD | DockerHub Access Token |
+* Docker: https://docs.docker.com/
+* Terraform: https://www.terraform.io/docs
+* Node.js: https://nodejs.org/en/docs
 
 ---
 
-# 📦 DockerHub Repository
+## 🎯 What I Learned
 
-Docker images are automatically pushed to DockerHub after successful workflow execution.
-
-Example:
-
-```bash
-docker.io/rajvbiw/tictactoe-app
-```
+* Containerizing a web application using Docker
+* Managing infrastructure with Terraform and the Docker provider
+* Running a Terraform workflow: init, plan, apply, state list, destroy
 
 ---
 
-# 📖 Read and Learn from Documentation
+## ✅ Project Outcome
 
-## Docker Documentation
+Successfully implemented a DevOps workflow for a TicTacToe app with:
 
-https://docs.docker.com/
-
-## GitHub Actions Documentation
-
-https://docs.github.com/en/actions
-
-## DockerHub Documentation
-
-https://docs.docker.com/docker-hub/
-
-## Node.js Documentation
-
-https://nodejs.org/en/docs
-
-## GitHub Documentation
-
-https://docs.github.com/
+* Docker containerization
+* Terraform-managed Docker resources
 
 ---
 
-# 🎯 What I Learned
-
-* How to containerize applications using Docker
-* How to automate workflows using GitHub Actions
-* How to build and push Docker images automatically
-* How CI/CD pipelines work in real DevOps environments
-* How to manage GitHub Secrets securely
-
----
-
-# ✅ Project Outcome
-
-Successfully implemented a CI/CD pipeline for a TicTacToe web application using:
-
-* Docker
-* GitHub Actions
-* DockerHub
-
-The pipeline automatically builds and deploys the Docker image whenever code is pushed to the main branch.
-
----
-
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 Raj Birari
